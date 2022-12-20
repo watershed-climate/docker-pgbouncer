@@ -7,6 +7,7 @@ services:
   autoDeploy: false
   pullRequestPreviewsEnabled: false
   envVars:
+  - fromGroup: pgbouncer-prod-ssl
   - key: MAX_DB_CONNECTIONS
     value: 180
   - key: MIN_POOL_SIZE
@@ -23,6 +24,7 @@ services:
   autoDeploy: false
   pullRequestPreviewsEnabled: false
   envVars:
+  - fromGroup: pgbouncer-prod-ssl
   - key: MAX_DB_CONNECTIONS
     value: 10
   - key: MIN_POOL_SIZE
