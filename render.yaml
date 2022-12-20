@@ -1,0 +1,59 @@
+services:
+- name: pgbouncer-prod-ssl
+  type: pserv
+  plan: pro
+  env: docker
+  numInstances: 1
+  autoDeploy: false
+  pullRequestPreviewsEnabled: false
+  envVars:
+  - key: MAX_DB_CONNECTIONS
+    value: 180
+  - key: MIN_POOL_SIZE
+    value: 4
+  - key: MAX_CLIENT_CONN
+    value: 5000
+  - key: DEFAULT_POOL_SIZE
+    value: 180
+- name: pgbouncer-prod-ssl-test
+  type: pserv
+  plan: pro
+  env: docker
+  numInstances: 1
+  autoDeploy: false
+  pullRequestPreviewsEnabled: false
+  envVars:
+  - key: MAX_DB_CONNECTIONS
+    value: 10
+  - key: MIN_POOL_SIZE
+    value: 1
+  - key: MAX_CLIENT_CONN
+    value: 100
+  - key: DEFAULT_POOL_SIZE
+    value: 10
+  - key: AUTH_FILE
+    value: "/etc/secrets/userlist.txt"
+
+envVarGroups:
+  - name: pgbouncer-prod-ssl
+    envVars:
+      - key: STATS_USERS
+        value: datadog
+      - key: ADMIN_USERS
+        value: waterhead
+      - key: CLIENT_TLS_SSLMODE
+        value: require
+      - key: PORT
+        value: 5432
+      - key: SERVER_TLS_SSLMODE
+        value: require
+      - key: SERVER_RESET_QUERY
+        value: DISCARD ALL
+      - key: POOL_MODE
+        value: transaction
+      - key: CLIENT_TLS_KEY_FILE
+        value: "/etc/secrets/client.tls.key"
+      - key: CLIENT_TLS_CERT_FILE
+        value: "/etc/secrets/client.tls.crt"
+      - key: CLIENT_TLS_CA_FILE
+        value: "/etc/secrets/client.ca.crt"
