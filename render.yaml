@@ -16,25 +16,6 @@ services:
     value: 5000
   - key: DEFAULT_POOL_SIZE
     value: 180
-- name: pgbouncer-prod-ssl-test
-  type: pserv
-  plan: pro
-  env: docker
-  numInstances: 1
-  autoDeploy: false
-  pullRequestPreviewsEnabled: false
-  envVars:
-  - fromGroup: pgbouncer-prod-ssl
-  - key: MAX_DB_CONNECTIONS
-    value: 10
-  - key: MIN_POOL_SIZE
-    value: 1
-  - key: MAX_CLIENT_CONN
-    value: 100
-  - key: DEFAULT_POOL_SIZE
-    value: 10
-  - key: AUTH_FILE
-    value: "/etc/secrets/userlist.txt"
 
 envVarGroups:
   - name: pgbouncer-prod-ssl
@@ -59,3 +40,5 @@ envVarGroups:
         value: "/etc/secrets/client.tls.crt"
       - key: CLIENT_TLS_CA_FILE
         value: "/etc/secrets/client.ca.crt"
+      - key: AUTH_FILE
+        value: "/etc/secrets/userlist.txt"
