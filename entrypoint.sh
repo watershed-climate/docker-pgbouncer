@@ -155,4 +155,25 @@ cat ${PG_CONFIG_DIR}/pgbouncer.ini
 echo "Starting $*..."
 fi
 
-exec "$@"
+# Render will send SIGTERM to stop the container on deploy. In PgBouncer, this
+# triggers immediate shutdown, causing dropped connections. PgBouncer performs
+# graceful shutdown only on SIGINT (see https://www.pgbouncer.org/usage.html),
+# so we trap SIGTERM here and transform it into SIGINT.
+shutdown() {
+  echo "Caught signal. Initiating graceful shutdown."
+  kill -INT "$pid"
+  # This seemingly redundant `wait` is needed here because `wait` is interrupted
+  # by signals.
+  wait "$pid"
+}
+
+trap shutdown SIGTERM SIGINT
+
+# Execute the provided command in a child process.
+"$@" &
+pid="$!"
+
+# Wait for the child process to exit. This `wait` will only complete if the
+# child process exits of its own accord, so we also need a `wait` in the signal
+# handler.
+wait "$pid"
