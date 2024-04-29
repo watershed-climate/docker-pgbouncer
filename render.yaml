@@ -1,5 +1,5 @@
 services:
-- name: pgbouncer-prod-ssl
+- name: pgbouncer-prod-ssl-2
   type: pserv
   plan: pro
   env: docker
@@ -8,3 +8,12 @@ services:
   pullRequestPreviewsEnabled: false
   envVars:
   - fromGroup: pgbouncer-prod-ssl
+- name: global-db-pgbouncer-prod-ssl
+  type: pserv
+  plan: pro
+  env: docker
+  numInstances: 1
+  autoDeploy: false
+  pullRequestPreviewsEnabled: false
+  envVars:
+  - fromGroup: global-db-pgbouncer-prod-ssl
