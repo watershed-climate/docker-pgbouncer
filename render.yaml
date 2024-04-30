@@ -23,34 +23,34 @@ envVarGroups:
     envVars:
       - key: ADMIN_USERS
         value: waterhead
-      - key: AUTH_FILE
-        value: /etc/secrets/userlist.txt
-      - key: CLIENT_TLS_CA_FILE
-        value: /etc/secrets/client.ca.crt
-      - key: CLIENT_TLS_CERT_FILE
-        value: /etc/secrets/client.tls.crt
-      - key: CLIENT_TLS_KEY_FILE
-        value: /etc/secrets/client.tls.key
-      - key: CLIENT_TLS_SSLMODE
-        value: require
-      - key: DEFAULT_POOL_SIZE
-        value: 379
-      - key: MAX_CLIENT_CONN
-        value: 5000
-      - key: MAX_DB_CONNECTIONS
-        value: 379
-      - key: MIN_POOL_SIZE
-        value: 256
-      - key: POOL_MODE
-        value: transaction
-      - key: PORT
-        value: 5432
-      - key: SERVER_RESET_QUERY
-        value: DISCARD ALL
-      - key: SERVER_TLS_SSLMODE
-        value: require
-      - key: STATS_USERS
-        value: datadog,opentelemetry_collector
+      # - key: AUTH_FILE
+      #   value: /etc/secrets/userlist.txt
+      # - key: CLIENT_TLS_CA_FILE
+      #   value: /etc/secrets/client.ca.crt
+      # - key: CLIENT_TLS_CERT_FILE
+      #   value: /etc/secrets/client.tls.crt
+      # - key: CLIENT_TLS_KEY_FILE
+      #   value: /etc/secrets/client.tls.key
+      # - key: CLIENT_TLS_SSLMODE
+      #   value: require
+      # - key: DEFAULT_POOL_SIZE
+      #   value: 379
+      # - key: MAX_CLIENT_CONN
+      #   value: 5000
+      # - key: MAX_DB_CONNECTIONS
+      #   value: 379
+      # - key: MIN_POOL_SIZE
+      #   value: 256
+      # - key: POOL_MODE
+      #   value: transaction
+      # - key: PORT
+      #   value: 5432
+      # - key: SERVER_RESET_QUERY
+      #   value: DISCARD ALL
+      # - key: SERVER_TLS_SSLMODE
+      #   value: require
+      # - key: STATS_USERS
+      #   value: datadog,opentelemetry_collector
 
 
   - name: global-db-pgbouncer-prod-ssl
