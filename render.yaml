@@ -11,7 +11,7 @@ services:
     - key: DATABASE_URL
       sync: false
 
-- name: global-db-pgbouncer-prod-ssl
+- name: global-db-pgbouncer-ssl
   type: pserv
   plan: pro
   env: docker
