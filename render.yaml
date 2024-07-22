@@ -23,6 +23,26 @@ services:
     - key: DATABASE_URL
       sync: false
 
+- name: eu-to-us-fdw-pgbouncer
+  type: pserv
+  plan: pro
+  env: docker
+  numInstances: 1
+  autoDeploy: false
+  pullRequestPreviewsEnabled: false
+  envVars:
+    - fromGroup: pgbouncer
+    - key: DATABASE_URL
+      sync: false
+    - key: DEFAULT_POOL_SIZE
+      value: 50
+    - key: MAX_CLIENT_CONN
+      value: 650
+    - key: MAX_DB_CONNECTIONS
+      value: 50
+    - key: MIN_POOL_SIZE
+      value: 10
+
 envVarGroups:
   - name: pgbouncer
     envVars:
