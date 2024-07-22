@@ -31,7 +31,6 @@ services:
   autoDeploy: false
   pullRequestPreviewsEnabled: false
   envVars:
-    - fromGroup: pgbouncer
     - key: DATABASE_URL
       sync: false
     - key: DEFAULT_POOL_SIZE
