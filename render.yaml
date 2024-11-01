@@ -38,7 +38,7 @@ services:
     - key: MAX_CLIENT_CONN
       value: 650
     - key: MAX_DB_CONNECTIONS
-      value: 50
+      value: 150
     - key: MIN_POOL_SIZE
       value: 10
     - key: ADMIN_USERS
