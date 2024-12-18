@@ -1,0 +1,45 @@
+name: Docker Build and Publish Image
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and push Docker image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - uses: "google-github-actions/auth@v2"
+        id: auth
+        with:
+          project_id: watershed-app-259821
+          workload_identity_provider: projects/588302933322/locations/global/workloadIdentityPools/github-actions/providers/github
+          service_account: pgbouncer-workflow@watershed-app-259821.iam.gserviceaccount.com
+          token_format: access_token
+
+      - name: Login to GAR
+        uses: docker/login-action@v3
+        with:
+          registry: us-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
+
+      - name: Build Cloud SQL Auth Proxy image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            us-docker.pkg.dev/watershed-app-259821/watershed/pgbouncer:latest
+            ${{ format('us-docker.pkg.dev/watershed-app-259821/watershed/pgbouncer:{0}', github.sha) }}
