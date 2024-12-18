@@ -1,8 +1,7 @@
 #!/bin/bash
 
 
-mkdir -p /var/data/secrets/
-cp -r /etc/secrets/ /var/data/secrets/
-chmod -R 444 /var/data/secrets/
+mkdir -p "${PGBOUNCER_CONF_DIR}/secrets/"
+cp -r /etc/secrets/ "${PGBOUNCER_CONF_DIR}/secrets/"
 
 /opt/bitnami/scripts/pgbouncer/run.sh
