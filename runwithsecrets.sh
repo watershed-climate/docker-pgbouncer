@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-mkdir -p "${PGBOUNCER_CONF_DIR}/secrets/"
-cp -av /etc/secrets/* "${PGBOUNCER_CONF_DIR}/secrets/"
+mkdir -p "$/opt/bitnami/pgbouncer/conf/secrets/"
+cp -av /etc/secrets/* "/opt/bitnami/pgbouncer/conf/secrets/"
 
 /opt/bitnami/scripts/pgbouncer/entrypoint.sh /opt/bitnami/scripts/pgbouncer/run.sh
